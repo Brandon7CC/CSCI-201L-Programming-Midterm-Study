@@ -9,9 +9,12 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import Game.*;
+
 @ServerEndpoint(value = "/mySocket")
 public class ServerSocket {
 	private static ArrayList<Session> sessions = new ArrayList<>();
+	private static Board board;
 	
 	@OnOpen
 	public void open(Session session) {
@@ -19,8 +22,11 @@ public class ServerSocket {
 		sessions.add(session);
 		
 		if(sessions.size() > 1) {
-			onMessage("Player joined", session);
+			onMessage("Let the games begin!", session);
+			board = new Board();
+			onMessage("1" + board.toString(), session);
 		}
+		
 	}
 	
 	@OnMessage
@@ -28,9 +34,13 @@ public class ServerSocket {
 		System.out.println(message);
 		try {
 			for(Session s : sessions) {
+				/*
 				if(!s.equals(session)) {
 					s.getBasicRemote().sendText(message);
 				}
+				*/
+				s.getBasicRemote().sendText(message);
+				
 			}
 		} catch (IOException ioe) {
 			System.out.println("ioe: " + ioe.getMessage());
