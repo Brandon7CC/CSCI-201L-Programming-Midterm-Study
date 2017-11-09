@@ -32,8 +32,36 @@ public class Board {
 		return false;
 	}
 
-	public boolean checkWin() {
-		return false;
+	public String checkWin() {
+		String out;
+		if (board.get(0).getPlayer().equals(board.get(1).getPlayer())
+				&& board.get(1).getPlayer().equals(board.get(2).getPlayer())) {
+			out = board.get(0).getPlayer();
+		} else if (board.get(3).getPlayer().equals(board.get(4).getPlayer())
+				&& board.get(4).getPlayer().equals(board.get(5).getPlayer())) {
+			out = board.get(3).getPlayer();
+		} else if (board.get(6).getPlayer().equals(board.get(7).getPlayer())
+				&& board.get(7).getPlayer().equals(board.get(8).getPlayer())) {
+			out = board.get(6).getPlayer();
+		} else if (board.get(0).getPlayer().equals(board.get(3).getPlayer())
+				&& board.get(3).getPlayer().equals(board.get(6).getPlayer())) {
+			out = board.get(0).getPlayer();
+		} else if (board.get(1).getPlayer().equals(board.get(4).getPlayer())
+				&& board.get(4).getPlayer().equals(board.get(7).getPlayer())) {
+			out = board.get(1).getPlayer();
+		} else if (board.get(2).getPlayer().equals(board.get(5).getPlayer())
+				&& board.get(5).getPlayer().equals(board.get(8).getPlayer())) {
+			out = board.get(2).getPlayer();
+		} else if (board.get(0).getPlayer().equals(board.get(4).getPlayer())
+				&& board.get(4).getPlayer().equals(board.get(8).getPlayer())) {
+			out = board.get(0).getPlayer();
+		} else if (board.get(2).getPlayer().equals(board.get(4).getPlayer())
+				&& board.get(4).getPlayer().equals(board.get(6).getPlayer())) {
+			out = board.get(0).getPlayer();
+		} else {
+			out = null;
+		}
+		return out;
 	}
 
 	public String toString() {
