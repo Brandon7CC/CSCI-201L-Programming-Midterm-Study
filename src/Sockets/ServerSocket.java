@@ -18,14 +18,7 @@ public class ServerSocket {
 	
 	@OnOpen
 	public void open(Session session) {
-		boolean exists = false;
-		for(Session s : sessions) {
-			if(s.equals(session)) {
-				exists = true;
-			}
-		}
-		
-		if(!exists) {
+		if(!existsInList(session)) {
 			System.out.println("New connection");
 			sessions.add(session);
 		}
@@ -36,6 +29,16 @@ public class ServerSocket {
 			onMessage("1" + board.toString(), session);
 		}
 		
+	}
+	
+	public boolean existsInList(Session session) {
+		for(Session s : sessions) {
+			if(s.equals(session)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	@OnMessage
