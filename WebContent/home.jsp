@@ -43,7 +43,7 @@
 	function makeMove(){
 		var e = document.getElementById("select");
 		var move = e.options[e.selectedIndex].value;
-		<%session.setAttribute("X","")%>
+		<%session.setAttribute("X","");%>
 		
 	}
 
