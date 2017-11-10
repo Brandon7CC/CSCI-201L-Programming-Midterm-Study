@@ -18,11 +18,16 @@ public class ServerSocket {
 	
 	@OnOpen
 	public void open(Session session) {
+		boolean exists = false;
 		for(Session s : sessions) {
-			if(!s.equals(session)) {
-				System.out.println("New connection");
-				sessions.add(session);
+			if(s.equals(session)) {
+				exists = true;
 			}
+		}
+		
+		if(!exists) {
+			System.out.println("New connection");
+			sessions.add(session);
 		}
 		
 		if(sessions.size() > 1) {
