@@ -18,8 +18,12 @@ public class ServerSocket {
 	
 	@OnOpen
 	public void open(Session session) {
-		System.out.println("New connection");
-		sessions.add(session);
+		for(Session s : sessions) {
+			if(!s.equals(session)) {
+				System.out.println("New connection");
+				sessions.add(session);
+			}
+		}
 		
 		if(sessions.size() > 1) {
 			onMessage("Let the games begin!", session);
